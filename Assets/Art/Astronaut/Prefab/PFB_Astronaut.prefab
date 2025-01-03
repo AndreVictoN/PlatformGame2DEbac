@@ -1062,6 +1062,7 @@ MonoBehaviour:
   - {fileID: 7274142433465299202}
   - {fileID: 4989476794605110809}
   color: {r: 1, g: 0.4292453, b: 0.4292453, a: 1}
+  nativeColor: {r: 1, g: 1, b: 1, a: 1}
   duration: 0.2
 --- !u!114 &1787756845197102839
 MonoBehaviour:

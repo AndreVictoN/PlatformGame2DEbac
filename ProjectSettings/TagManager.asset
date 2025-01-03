@@ -6,6 +6,9 @@ TagManager:
   tags:
   - floor
   - Enemy
+  - Coin
+  - Moonstone
+  - AlienEgg
   layers:
   - Default
   - TransparentFX

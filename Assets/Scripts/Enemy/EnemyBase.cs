@@ -29,7 +29,21 @@ public class EnemyBase : MonoBehaviour
 
         PlayKillAnimation();
 
-        Destroy(gameObject, timeToDestroy);
+        Invoke("PlayKillVFX", 1f);
+
+        Invoke(nameof(DestroyEnemy), timeToDestroy);
+    }
+
+    private void DestroyEnemy()
+    {
+        //gameObject.SetActive(false);
+
+        Destroy(gameObject);
+    }
+
+    private void PlayKillVFX()
+    {
+        VFXManager.Instance.PlayVFXByType(VFXManager.VFXType.EnemyDie, transform.position);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

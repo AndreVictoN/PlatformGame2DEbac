@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
@@ -17,9 +18,17 @@ public class Player : MonoBehaviour
     private float _currentSpeed;
     public bool _isOnFloor;
 
+    [Header("Jump")]
+    public ParticleSystem jumpVFX;
+
+    /*[Header("JumpCollisionCheck")]
+    public Collider2D coll2D;
+    public float distToGround;
+    public float spaceToGround = .1f;*/
+
     private void Awake()
     {
-        _isOnFloor = false;
+        //_isOnFloor = false;
 
         if(healthBase != null)
         {
@@ -27,7 +36,19 @@ public class Player : MonoBehaviour
         }
 
         _currentPlayer = Instantiate(soPlayer_Setup.player, transform);
+
+        /*if(coll2D != null)
+        {
+            distToGround = coll2D.bounds.extents.y;
+        }*/
     }
+
+    /*private bool IsGrounded()
+    {
+        Debug.DrawRay(transform.position, -Vector2.up, Color.magenta, distToGround + spaceToGround);
+
+        return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + spaceToGround);
+    }*/
 
     private void OnPlayerKill()
     {
@@ -38,6 +59,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        //IsGrounded();
         HandleJump();
         HandleMovement();
     }
@@ -125,10 +147,20 @@ public class Player : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                HandleScaleJump();
                 myRigidbody.velocity = Vector2.up * soPlayer_Setup.jumpForce;
+
+                DOTween.Kill(myRigidbody.transform);
+                
+                HandleScaleJump();
+                PlayJumpVFX();
             }
         }
+    }
+
+    private void PlayJumpVFX()
+    {
+        VFXManager.Instance.PlayVFXByType(VFXManager.VFXType.JUMP, transform.position);
+        //if(jumpVFX != null) jumpVFX.Play();
     }
 
     private void HandleScaleJump()
