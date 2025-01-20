@@ -6,14 +6,15 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
     public int damage = 2;
-
     public Animator animator;
     public string triggerAttack = "Attack";
     public string triggerKill = "Kill";
-
     public HealthBase healthBase;
-
     public float timeToDestroy = 1;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip audioClip;
 
     void Awake()
     {
@@ -21,11 +22,23 @@ public class EnemyBase : MonoBehaviour
         {
             healthBase.OnKill += OnEnemyKill;
         }
+
+        if(audioSource == null)
+        {
+            audioSource = transform.GetComponentInChildren<AudioSource>();
+        }
     }
 
     private void OnEnemyKill()
     {
         healthBase.OnKill -= OnEnemyKill;
+
+        if(audioClip != null)
+        {
+            audioSource.clip = audioClip;
+        }
+
+        if(audioSource != null) audioSource.Play();
 
         PlayKillAnimation();
 

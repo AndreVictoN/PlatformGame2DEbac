@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     [Header("Jump")]
     public ParticleSystem jumpVFX;
+    public AudioSource jumpPlayerAudio;
 
     /*[Header("JumpCollisionCheck")]
     public Collider2D coll2D;
@@ -35,7 +36,7 @@ public class Player : MonoBehaviour
             healthBase.OnKill += OnPlayerKill;
         }
 
-        _currentPlayer = Instantiate(soPlayer_Setup.player, transform);
+        _currentPlayer = Instantiate(soPlayer_Setup.player, transform); 
 
         /*if(coll2D != null)
         {
@@ -151,9 +152,18 @@ public class Player : MonoBehaviour
 
                 DOTween.Kill(myRigidbody.transform);
                 
+                PlayAudios("jump");
                 HandleScaleJump();
                 PlayJumpVFX();
             }
+        }
+    }
+
+    private void PlayAudios(string audioToPlay)
+    {
+        if(audioToPlay == "jump")
+        {
+            jumpPlayerAudio.Play();
         }
     }
 
