@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ItemCollectableBase : MonoBehaviour
+public class ItemCollectibleBase : MonoBehaviour
 {
     public string compareTag = "Player";
     public ParticleSystem particleSys;
