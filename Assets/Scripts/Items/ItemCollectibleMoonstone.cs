@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemCollectableMoonstone : ItemCollectableBase
+public class ItemCollectibleMoonstone : ItemCollectibleBase
 {
     protected override void OnCollect()
     {
