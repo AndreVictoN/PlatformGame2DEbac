@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemCollectableAlienEgg : ItemCollectableBase
+public class ItemCollectibleAlienEgg : ItemCollectibleBase
 {
     protected override void OnCollect()
     {
